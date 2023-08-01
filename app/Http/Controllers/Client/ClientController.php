@@ -11,6 +11,8 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Validator;
 use Str;
+use Stripe\Stripe;
+use Stripe\PaymentIntent;
 
 class ClientController extends Controller
 {
@@ -49,7 +51,7 @@ class ClientController extends Controller
         if($validator->fails()){
             return redirect()->route('clientHome')->withErrors($validator)->withInput();
         }else{
-            
+
             $search = str_replace(' ', '-', strtolower($request->product));
 
             $data = [
@@ -168,7 +170,7 @@ class ClientController extends Controller
 
         return view('client.success-order', $data);
     }
-    
+
 
     public function checkOrder(){
         $data = [

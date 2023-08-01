@@ -4,21 +4,21 @@
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" id="name" class="form-control  @error('name') is-invalid @enderror bg-transparent" placeholder="Mike" value="{{ old('name') }}" required>
-            @error('name') 
+            @error('name')
               <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
         <div class="form-group">
             <label for="phone">Phone number</label>
             <input type="text" name="phone" id="phone" class="form-control  @error('phone') is-invalid @enderror bg-transparent" placeholder="08122387xxxx" value="{{ old('phone') }}" required>
-            @error('phone') 
+            @error('phone')
               <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
         <div class="form-group">
             <label for="address">Address</label>
             <input type="text" name="address" id="address" class="form-control  @error('address') is-invalid @enderror bg-transparent" placeholder="3425 Stone Street" value="{{ old('address') }}" required>
-            @error('address') 
+            @error('address')
               <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
@@ -32,6 +32,7 @@
             @enderror
         </div>
         <button type="submit" class="btn btn-primary float-end">Order</button>
+        <input type="hidden" name="total_amount" value="{{ $total }}">
     </form>
 </div>
 @push('js')
@@ -50,7 +51,7 @@
             text.on('input', function(){
                 resize($(this));
             });
-            
+
             function resize ($text) {
                 $text.css('height', 'auto');
                 $text.css('height', $text[0].scrollHeight+'px');
